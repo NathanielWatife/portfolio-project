@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HerData - SignUpPage</title>
+    <link rel="stylesheet" href="{% static 'livestock/css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Herdata</h1>
+        <p>Livestock Management Platform</p>
+        <a href="/login">Login</a>
+    </header>
+    <main>
+        <section id="cta">
+            <div class="form-container">
+                <form method="POST">
+                    {% csrf_token %}
+                    <label for="id_username">Username:</label>
+                    {{ form.username }}
+                    <br><br>
+
+                    <label for="id_email">Email:</label>
+                    {{ form.email }}
+                    <br><br>
+
+                    <label for="id_password">Password:</label>
+                    {{ form.password1 }}
+                    <br><br>
+
+                    <label for="id_password2">Confirm Password:</label>
+                    {{ form.password2 }}
+                    <br><br>
+
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Herdata. All rights reserved.</p>
+    </footer>
+
+
+    <div class="section">
+        
+    </div>
+</body>
+</html>

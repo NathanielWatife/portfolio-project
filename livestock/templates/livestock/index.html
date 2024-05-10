@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HerData - Livestock Management Platform</title>
+    <link rel="stylesheet" href="{% static 'livestock/css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Herdata</h1>
+        <p>Livestock Management Platform</p>
+    </header>
+    <main>
+        <section id="features">
+            <!-- Feature section content -->
+        </section>
+        <section id="sample-livestock">
+            <h2>Sample Livestock</h2>
+            <div class="livestock-container">
+                {% for livestock in sample_livestock %}
+                    <div class="livestock-card">
+                        <img src="{{ livestock.breed_image.url }}" alt="{{ livestock.breed }}">
+                        <h3>{{ livestock.breed }}</h3>
+                        <p>Age: {{ livestock.age }}</p>
+                        <p>Gender: {{ livestock.gender }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+        <section id="cta">
+            <!-- Call-to-action section content -->
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Herdata. All rights reserved.</p>
+    </footer>
+</body>
+</html>

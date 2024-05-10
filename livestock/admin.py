@@ -1,3 +1,4 @@
+"""Module for registering models with the Django admin site."""
 from django.contrib import admin
 from .models import Livestock, HealthRecord
 
