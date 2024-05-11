@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HerData - Add-HealthRecords</title>
+    <link rel="stylesheet" href="{% static 'livestock/css/styles.css' %}">
+
+</head>
+<body>
+    <header>
+        <h1>Herdata</h1>
+        <p>Livestock Management Platform</p>
+        <div class="header-nav">
+            <a class="nav-link" href="/login">Logout</a>
+            <a class="nav-link" href="/">Home</a>
+        </div>
+    </header>
+    <main>
+        <section id="cta">
+            <div class="cta-title">
+                <h3>Add HealthRecord</h3>
+            </div>
+            <div class="form-container">
+                <form method="POST">
+                    {% csrf_token %}
+                    <label for="id_livestock">Livestock:</label>
+                    {{ form.livestock }}
+                    <br><br>
+
+                    <label for="id_symptoms">Symptoms:</label>
+                    {{ form.symptoms }}
+                    <br><br>
+
+                    <label for="id_diagnosis">Diagnosis:</label>
+                    {{ form.diagnosis }}
+                    <br><br>
+
+                    <label for="id_treatment">Treatment:</label>
+                    {{ form.treatment }}
+                    <br><br>
+
+                    <label for="id_vaccine">Vaccination Records:</label>
+                    {{ form.vaccination_records }}
+                    <br><br>
+
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Herdata. All rights reserved.</p>
+    </footer>
+</body>
+</html>

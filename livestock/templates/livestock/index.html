@@ -11,24 +11,49 @@
     <header>
         <h1>Herdata</h1>
         <p>Livestock Management Platform</p>
+        <a href="/login">Logout</a>
     </header>
     <main>
         <section id="features">
             <!-- Feature section content -->
+            <div class="features-title">
+                <h2>Sample Livestock</h2>
+            </div>
         </section>
         <section id="sample-livestock">
-            <h2>Sample Livestock</h2>
             <div class="livestock-container">
                 {% for livestock in sample_livestock %}
                     <div class="livestock-card">
-                        <img src="{{ livestock.breed_image.url }}" alt="{{ livestock.breed }}">
+                        <h3>{{ livestock.user.username }}</h3>
+                        <img src="{{ livestock.image.url }}" alt="{{ livestock.breed }}">
                         <h3>{{ livestock.breed }}</h3>
                         <p>Age: {{ livestock.age }}</p>
                         <p>Gender: {{ livestock.gender }}</p>
                     </div>
                 {% endfor %}
+                <div class="add-btn">
+                    <a href="{% url 'add_livestock' %}">Add Livestock</a>
+                </div>
+            </div>
+
+            <div class="healthrecord-container">
+                {% for healthrecord in sample_health %}
+                    <div class="livestock-card">
+                        <h3>{{ healthrecord.user.username }}</h3>
+                        <h3>Livestock: {{ healthrecord.livestock }}</h3>
+                        <p>Symptoms: {{ healthrecord.symptoms }}</p>
+                        <p>Diagnosis: {{ healthrecord.diagnosis }}</p>
+                        <p>Treatment: {{ healthrecord.treatment }}</p>
+                        <p>Vaccination: {{ healthrecord.vaccination_records }} </p>
+                        <p>Date: {{ healthrecord.created_at }}</p>
+                    </div>
+                {% endfor %}
+                <div class="add-btn">
+                    <a href="/add_health_record/livestock.id">Add HealthRecord</a>
+                </div>
             </div>
         </section>
+
         <section id="cta">
             <!-- Call-to-action section content -->
         </section>
