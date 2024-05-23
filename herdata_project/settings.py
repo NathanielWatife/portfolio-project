@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'bootstrap5',
     'livestock.apps.LivestockConfig',
     'django.contrib.admin',
     'django.contrib.auth',

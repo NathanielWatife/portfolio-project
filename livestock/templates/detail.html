@@ -1,4 +1,11 @@
 {% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% bootstrap_form_errors %}
+{% bootstrap_form %}
+{% bootstrap_field %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,19 +49,18 @@
 </head>
 <body>
     
+    <!-- blog details -->
 
-
-    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
-    <script src="{% static 'js/bootstrap.bundle.js.map' %}"></script>
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.bundle.min.js.map' %}"></script>
-    <script src="{% static 'js/bootstrap.esm.js' %}"></script>
-    <script src="{% static 'js/bootstrap.esm.js.map' %}"></script>
-    <script src="{% static 'js/bootstrap.esm.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.esm.min.js.map' %}"></script>
-    <script src="{% static 'js/bootstrap.js' %}"></script>
-    <script src="{% static 'js/bootstrap.js.map' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js.map' %}"></script>
+    <footer class="bg-body-tertiary text-center">
+        <!-- Grid container -->
+        <div class="container p-4"></div>
+        <!-- Grid container -->
+      
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+            &copy; 2024 Herdata. All rights reserved.
+        </div>
+        <!-- Copyright -->
+      </footer>
 </body>
 </html>

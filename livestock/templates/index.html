@@ -1,115 +1,103 @@
 {% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HerData - Livestock Management Platform</title>
-    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.css.map' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css.map' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.rtl.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.rtl.css.map' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.rtl.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.rtl.min.css.map' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.css.maphttps://slashdev.io/careers' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.min.css.map' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.rtl.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.rtl.css.map' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.rtl.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.rtl.min.css.map' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-utilities.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-utilities.css.map' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-utilities.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-utilities.min.css.map' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-utilities.rtl.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-utilities.rtl.css.map' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-utilities.rtl.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-utilities.rtl.min.css.map' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css.map' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css.map' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.css.map' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.min.css.map' %}">
-    <!-- custom style sheet -->
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/styles.css' %}"> -->
 </head>
 <body>
-    <header>
-        <div class="header-nav">
-            <h1>Herdata</h1>
-            <p>Livestock Management Platform</p>
+    <nav class="navbar justi navbar-expand-lg navbar-dark bg-dark p-2">
+        <a class="navbar-brand" href="{% url 'home' %}">Her<span>Data</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'add_livestock' %}">Add To Livestock</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'analysis' %}">Analysis</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+            </ul>
         </div>
-        <div class="nav">
-            <a href="/login">Logout</a>
-            <a href="/list">Blog</a>
-        </div>
-    </header>
-    <main>
-        <!-- <section id="features"> -->
-            <!-- Feature section content -->
-            <div class="features-title">
-                <h2>Sample Livestock</h2>
+    </nav>
+    
+
+    <!-- container -->
+    <div class="container-fluid m-top-10">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="jumbotron">
+                    <h1 class="display-3">Welcome to HerData</h1>
+                    <p class="lead">Livestock Management Platform</p>
+                </div>
             </div>
-        <!-- </section> -->
-        <section id="sample-livestock">
-            <div class="livestock-container">
-                {% for livestock in sample_livestock %}
-                    <div class="livestock-card">
-                        <h3>{{ livestock.user.username }}</h3>
-                        <img src="{{ livestock.image.url }}" alt="{{ livestock.breed }}">
-                        <h3>{{ livestock.breed }}</h3>
-                        <p>Age: {{ livestock.age }}</p>
-                        <p>Gender: {{ livestock.gender }}</p>
-                    </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        {% for livestock in sample_livestock %}
+                        <div class="livestock-card">
+                            <h2 class="display-4">{{ livestock.user.username }}</h2>
+                            <img src="{{ livestock.image.url }}" alt="{{ livestock.breed }}" class="rounded mx-auto d-block" alt="...">
+                            <h3 class="display-0">{{ livestock.breed }}</h3>
+                            <p>Age: {{ livestock.age }}</p>
+                            <p>Gender: {{ livestock.gender }}</p>
+                        </div>
                 {% endfor %}
-                <div class="add-btn">
-                    <a href="{% url 'add_livestock' %}">Add Livestock</a>
+                    </div>
                 </div>
             </div>
 
-            <div class="healthrecord-container">
-                {% for healthrecord in sample_health %}
-                    <div class="livestock-card">
-                        <h3>{{ healthrecord.user.username }}</h3>
-                        <h3>Livestock: {{ healthrecord.livestock }}</h3>
-                        <p>Symptoms: {{ healthrecord.symptoms }}</p>
-                        <p>Diagnosis: {{ healthrecord.diagnosis }}</p>
-                        <p>Treatment: {{ healthrecord.treatment }}</p>
-                        <p>Vaccination: {{ healthrecord.vaccination_records }} </p>
-                        <p>Date: {{ healthrecord.created_at }}</p>
+            <!-- second -->
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        {% for healthrecord in sample_health %}
+                        <div class="livestock-card">
+                            <h3>{{ healthrecord.user.username }}</h3>
+                            <h3>Livestock: {{ healthrecord.livestock }}</h3>
+                            <p>Symptoms: {{ healthrecord.symptoms }}</p>
+                            <p>Diagnosis: {{ healthrecord.diagnosis }}</p>
+                            <p>Treatment: {{ healthrecord.treatment }}</p>
+                            <p>Vaccination: {{ healthrecord.vaccination_records }} </p>
+                            <p>Date: {{ healthrecord.created_at }}</p>
+                        </div>
+                        {% endfor %}
                     </div>
-                {% endfor %}
-                <div class="add-btn">
-                    <a href="/add_health_record/livestock.id">Add HealthRecord</a>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section id="cta">
-            <!-- Call-to-action section content -->
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 Herdata. All rights reserved.</p>
+    </div>
+
+
+    <footer class="bg-body-tertiary text-center">
+        <!-- Grid container -->
+        <div class="container p-4"></div>
+        <!-- Grid container -->
+      
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+            &copy; 2024 Herdata. All rights reserved.
+        </div>
+        <!-- Copyright -->
     </footer>
-    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
-    <script src="{% static 'js/bootstrap.bundle.js.map' %}"></script>
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.bundle.min.js.map' %}"></script>
-    <script src="{% static 'js/bootstrap.esm.js' %}"></script>
-    <script src="{% static 'js/bootstrap.esm.js.map' %}"></script>
-    <script src="{% static 'js/bootstrap.esm.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.esm.min.js.map' %}"></script>
-    <script src="{% static 'js/bootstrap.js' %}"></script>
-    <script src="{% static 'js/bootstrap.js.map' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js.map' %}"></script>
 </body>
 </html>

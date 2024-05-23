@@ -7,7 +7,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HerData - Add-HealthRecords</title>
+    <title>HerData - Livestock Details</title>
+
+
 </head>
 <body>
     <nav class="navbar justi navbar-expand-lg navbar-dark bg-dark p-2">
@@ -33,45 +35,25 @@
             </ul>
         </div>
     </nav>
-    <div class="conainer">
+        <section id="cta">
             <div class="cta-title">
-                <h3 class="display-4">Add Health Record for {{ livestock.name }}</h3>
+                <h3>{{ livestock.name }}</h3>
             </div>
-            <div class="form-container">
-                <form method="POST">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <label class="form-label" for="id_livestock">Livestock:</label>
-                        {{ form.livestock }}
-                    </div>
-                    
-                    <br><br>
-                    <div class="mb-3">
-                        <label class="form-label" for="id_symptoms">Symptoms:</label>
-                        {{ form.symptoms }}
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label" for="id_diagnosis">Diagnosis:</label>
-                    {{ form.diagnosis }}
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label" for="id_treatment">Treatment:</label>
-                        {{ form.treatment }}
-                    </div>
-                    
-
-                    <div class="mb-3">
-                        <label  class="form-label"for="id_vaccine">Vaccination Records:</label>
-                        {{ form.vaccination_records }}
-                    </div>
-
-                    <button class="btn btn-outline-success" type="submit">Sign Up</button>
-                </form>
+            <div class="livstock-detail">
+                <p>Breed: {{ livestock.breed }}</p>
+                <p>Age: {{ livstock.age }}</p>
+                <p>Gender: {{ livestock.gender }}</p>
+                <p>Health Records:</p>
+                <ul>
+                    {% for record in livestock.healthrecored_set.all %}
+                        <li>{{ record.date }}: {{ record.details }}</li>
+                    {% endfor %}
+                </ul>
+                <a href="{% url 'add_health_record' livestock.id %}">Add Health Record</a>
             </div>
-        </div>
-    <footer class="bg-body-tertiary fixed-bottom text-center">
+        </section>
+    </main>
+    <footer class="bg-body-tertiary text-center">
         <!-- Grid container -->
         <div class="container p-4"></div>
         <!-- Grid container -->
