@@ -16,8 +16,8 @@ from django.db.models import Avg
 @login_required(login_url='login')
 def home(request):
     """View for the home page."""
-    sample_health = HealthRecord.objects.all()[:3]
-    sample_livestock = Livestock.objects.all()[:3]
+    sample_health = HealthRecord.objects.all()[:5]
+    sample_livestock = Livestock.objects.all()[:5]
     return render(request, 'index.html', {
         'sample_livestock': sample_livestock,
         'sample_health': sample_health
