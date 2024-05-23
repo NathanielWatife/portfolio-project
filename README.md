@@ -21,4 +21,7 @@
 
     ## User Authentication
     - User authentication is done using the Django authentication system.
-    
+
+### HerData Blog Model
+    - Using Django, it will create each attributes that represents a datafield.
+    First i defined a POST model. 

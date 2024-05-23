@@ -1,29 +1,29 @@
 """Module for views in the livestock app."""
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
-from .models import Livestock
+from django.utils import timezone
+from .models import Livestock, HealthRecord, Post
 from .forms import LivestockForm, HealthRecordForm
-from .models import HealthRecord
+
 
 
 
 # Create your views here.
-@login_required
+@login_required(login_url='login')
 def home(request):
     """View for the home page."""
-    sample_livestock = Livestock.objects.all()[:3]
     sample_health = HealthRecord.objects.all()[:3]
-    return render(request, 'livestock/index.html', {
+    sample_livestock = Livestock.objects.all()[:3]
+    return render(request, 'index.html', {
         'sample_livestock': sample_livestock,
         'sample_health': sample_health
     })
 
 
 # Livestock
-
-@login_required
+@login_required(login_url='login')
 def add_livestock(request):
     """View for adding a new livestock entry."""
     if request.method == 'POST':
@@ -37,9 +37,28 @@ def add_livestock(request):
             return redirect('/')
     else:
         form = LivestockForm()
-    return render(request, 'livestock/add_livestock.html', {'form': form})
+    return render(request, 'add_livestock.html', {'form': form})
 
 
+
+@login_required(login_url='login')
+def post_list(request):
+    """View for listing all posts."""
+    posts = Post.objects.all()
+    return render(request, 'list.html', {'posts': posts})
+
+
+@login_required(login_url='login')
+def post_detail(request, year, month, day, post):
+    """View for displaying a single post."""
+    post = get_object_or_404(Post,
+        slug=post,
+        status='published',
+        publish__year=year,
+        publish__month=month,
+        publish__day=day
+    )
+    return render(request, 'detail.html', {'post': post})
 
 # @login_required
 # def edit_livestock(request, livestock_id):
@@ -67,7 +86,7 @@ def add_livestock(request):
 
 
 # HealthRecord
-@login_required
+@login_required(login_url='login')
 def add_health_record(request, livestock_id):
     """View for adding a new health record."""
     livestock = Livestock.objects.get(id=livestock_id)
@@ -81,7 +100,7 @@ def add_health_record(request, livestock_id):
             return redirect('/')
     else:
         form = HealthRecordForm()
-    return render(request, 'livestock/add_health_record.html', {'form': form, 'livestock': livestock})
+    return render(request, 'add_health_record.html', {'form': form, 'livestock': livestock})
 
 
 
@@ -103,7 +122,7 @@ def signup(request):
             return redirect('/')
     else:
         form = UserCreationForm()
-    return render(request, 'livestock/signup.html', {'form': form})
+    return render(request, 'signup.html', {'form': form})
 
 
 def login_view(request):
@@ -115,7 +134,7 @@ def login_view(request):
             return redirect('/')
     else:
         form = AuthenticationForm()
-    return render(request, 'livestock/login.html', {'form': form})
+    return render(request, 'login.html', {'form': form})
 
 
 def logout_view(request):
